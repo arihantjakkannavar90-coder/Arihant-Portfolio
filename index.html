@@ -215,6 +215,7 @@
             border-radius: 10px;
             font-weight: 600;
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .btn-primary {
@@ -387,6 +388,7 @@
         .project-link {
             color: #38bdf8;
             font-weight: 600;
+            cursor: pointer;
         }
 
         .project-link:hover {
@@ -471,6 +473,7 @@
             display: block;
             overflow: hidden;
             background: #111827;
+            cursor: pointer;
         }
 
         .certificate-card img {
@@ -511,6 +514,7 @@
             color: #38bdf8;
             font-size: 14px;
             font-weight: 600;
+            cursor: pointer;
         }
 
         .view-certificate:hover {
@@ -548,6 +552,10 @@
         }
 
         .contact-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
             padding: 12px 18px;
 
             border: 1px solid rgba(56,189,248,0.2);
@@ -557,12 +565,15 @@
             color: #d1d5db;
 
             transition: 0.3s;
+
+            cursor: pointer;
         }
 
         .contact-link:hover {
             color: #38bdf8;
             border-color: #38bdf8;
             transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(56,189,248,0.10);
         }
 
         /* =========================
@@ -720,6 +731,14 @@
 
             .contact-box {
                 padding: 28px 20px;
+            }
+
+            .contact-links {
+                flex-direction: column;
+            }
+
+            .contact-link {
+                width: 100%;
             }
         }
 
@@ -884,67 +903,45 @@
         <div class="skills-grid">
 
             <div class="skill-card">
-
                 <h3>Programming</h3>
-
-                <p>
-                    C, C++, Python, HTML, CSS and JavaScript
-                </p>
-
+                <p>C, C++, Python, HTML, CSS and JavaScript</p>
             </div>
 
             <div class="skill-card">
-
                 <h3>Frameworks</h3>
-
-                <p>
-                    Django and Flask
-                </p>
-
+                <p>Django and Flask</p>
             </div>
 
             <div class="skill-card">
-
                 <h3>Embedded Systems</h3>
-
                 <p>
                     Arduino UNO, pH Sensor, Turbidity Sensor
                     and sensor-based systems
                 </p>
-
             </div>
 
             <div class="skill-card">
-
                 <h3>Cybersecurity</h3>
-
                 <p>
                     USB activity monitoring, access-control
                     concepts and security-focused projects
                 </p>
-
             </div>
 
             <div class="skill-card">
-
                 <h3>Data & Monitoring</h3>
-
                 <p>
                     Sensor data monitoring, real-time visualization
                     and project development
                 </p>
-
             </div>
 
             <div class="skill-card">
-
                 <h3>Soft Skills</h3>
-
                 <p>
                     Problem solving, teamwork, communication
                     and project development
                 </p>
-
             </div>
 
         </div>
@@ -968,8 +965,6 @@
 
         <div class="projects-grid">
 
-            <!-- PROJECT 01 -->
-
             <div class="project-card">
 
                 <div class="project-number">
@@ -988,13 +983,11 @@
                 </p>
 
                 <div class="tags">
-
                     <span class="tag">Python</span>
                     <span class="tag">Flask</span>
                     <span class="tag">USB Security</span>
                     <span class="tag">SQLite</span>
                     <span class="tag">HTML/CSS/JS</span>
-
                 </div>
 
                 <a
@@ -1006,8 +999,6 @@
 
             </div>
 
-
-            <!-- PROJECT 02 -->
 
             <div class="project-card">
 
@@ -1027,13 +1018,11 @@
                 </p>
 
                 <div class="tags">
-
                     <span class="tag">Arduino UNO</span>
                     <span class="tag">pH Sensor</span>
                     <span class="tag">Turbidity Sensor</span>
                     <span class="tag">Django</span>
                     <span class="tag">Real-Time Monitoring</span>
-
                 </div>
 
                 <a
@@ -1067,78 +1056,42 @@
         <div class="achievements-grid">
 
             <div class="achievement">
-
-                <h3>
-                    🥈 Treasure Hunt – 2nd Place
-                </h3>
-
-                <p>
-                    Achievement at Jain College of Engineering.
-                </p>
-
+                <h3>🥈 Treasure Hunt – 2nd Place</h3>
+                <p>Achievement at Jain College of Engineering.</p>
             </div>
 
             <div class="achievement">
-
-                <h3>
-                    🏆 NSS Volleyball
-                </h3>
-
-                <p>
-                    Secured 1st place in NSS Volleyball.
-                </p>
-
+                <h3>🏆 NSS Volleyball</h3>
+                <p>Secured 1st place in NSS Volleyball.</p>
             </div>
 
             <div class="achievement">
-
-                <h3>
-                    🛡️ Cyber Security Workshop
-                </h3>
-
+                <h3>🛡️ Cyber Security Workshop</h3>
                 <p>
                     Participated in Hackmanthan 2.0 Cyber Security
                     Workshop at Techfest, IIT Bombay.
                 </p>
-
             </div>
 
             <div class="achievement">
-
-                <h3>
-                    🎭 ODYSSEY 2025
-                </h3>
-
+                <h3>🎭 ODYSSEY 2025</h3>
                 <p>
                     Contributed as a cultural committee /
                     student volunteer.
                 </p>
-
             </div>
 
             <div class="achievement">
-
-                <h3>
-                    🎓 Student Induction Program
-                </h3>
-
-                <p>
-                    Participated as a student volunteer.
-                </p>
-
+                <h3>🎓 Student Induction Program</h3>
+                <p>Participated as a student volunteer.</p>
             </div>
 
             <div class="achievement">
-
-                <h3>
-                    💻 Technical Learning
-                </h3>
-
+                <h3>💻 Technical Learning</h3>
                 <p>
                     Completed programming, AI and problem-solving
                     learning activities.
                 </p>
-
             </div>
 
         </div>
@@ -1168,15 +1121,9 @@
 
         <div class="certificate-grid">
 
-
-            <!-- 01 C PROGRAMMING -->
-
             <div class="certificate-card">
 
-                <a
-                    href="images/c-programming.jpeg"
-                    target="_blank"
-                >
+                <a href="images/c-programming.jpeg" target="_blank">
 
                     <img
                         src="images/c-programming.jpeg"
@@ -1189,9 +1136,7 @@
 
                     <h3>C Programming</h3>
 
-                    <p>
-                        Programming & Technical Learning
-                    </p>
+                    <p>Programming & Technical Learning</p>
 
                     <a
                         href="images/c-programming.jpeg"
@@ -1205,8 +1150,6 @@
 
             </div>
 
-
-            <!-- 02 COMMUNICATION -->
 
             <div class="certificate-card">
 
@@ -1224,13 +1167,9 @@
 
                 <div class="certificate-info">
 
-                    <h3>
-                        Communication & Personal Dynamics
-                    </h3>
+                    <h3>Communication & Personal Dynamics</h3>
 
-                    <p>
-                        Professional Development
-                    </p>
+                    <p>Professional Development</p>
 
                     <a
                         href="images/communication%26personal-dynamics.jpeg"
@@ -1244,8 +1183,6 @@
 
             </div>
 
-
-            <!-- 03 CONSUMPTION LITERACY -->
 
             <div class="certificate-card">
 
@@ -1263,13 +1200,9 @@
 
                 <div class="certificate-info">
 
-                    <h3>
-                        Consumption Literacy
-                    </h3>
+                    <h3>Consumption Literacy</h3>
 
-                    <p>
-                        Learning & Awareness
-                    </p>
+                    <p>Learning & Awareness</p>
 
                     <a
                         href="images/consumption-literacy.jpeg"
@@ -1284,14 +1217,9 @@
             </div>
 
 
-            <!-- 04 CYBER SECURITY -->
-
             <div class="certificate-card">
 
-                <a
-                    href="images/cyber-security.jpeg"
-                    target="_blank"
-                >
+                <a href="images/cyber-security.jpeg" target="_blank">
 
                     <img
                         src="images/cyber-security.jpeg"
@@ -1302,13 +1230,9 @@
 
                 <div class="certificate-info">
 
-                    <h3>
-                        Cyber Security Workshop
-                    </h3>
+                    <h3>Cyber Security Workshop</h3>
 
-                    <p>
-                        Hackmanthan 2.0 • Techfest, IIT Bombay
-                    </p>
+                    <p>Hackmanthan 2.0 • Techfest, IIT Bombay</p>
 
                     <a
                         href="images/cyber-security.jpeg"
@@ -1323,14 +1247,9 @@
             </div>
 
 
-            <!-- 05 IBM AI -->
-
             <div class="certificate-card">
 
-                <a
-                    href="images/IBM-AI.jpeg"
-                    target="_blank"
-                >
+                <a href="images/IBM-AI.jpeg" target="_blank">
 
                     <img
                         src="images/IBM-AI.jpeg"
@@ -1341,13 +1260,9 @@
 
                 <div class="certificate-info">
 
-                    <h3>
-                        AI Fundamentals
-                    </h3>
+                    <h3>AI Fundamentals</h3>
 
-                    <p>
-                        IBM SkillsBuild
-                    </p>
+                    <p>IBM SkillsBuild</p>
 
                     <a
                         href="images/IBM-AI.jpeg"
@@ -1361,8 +1276,6 @@
 
             </div>
 
-
-            <!-- 06 IBM PROBLEM SOLVING -->
 
             <div class="certificate-card">
 
@@ -1380,13 +1293,9 @@
 
                 <div class="certificate-info">
 
-                    <h3>
-                        Problem Solving
-                    </h3>
+                    <h3>Problem Solving</h3>
 
-                    <p>
-                        IBM Learning
-                    </p>
+                    <p>IBM Learning</p>
 
                     <a
                         href="images/IBM-problem-solving.jpeg"
@@ -1400,8 +1309,6 @@
 
             </div>
 
-
-            <!-- 07 IEEE MACHINE LEARNING -->
 
             <div class="certificate-card">
 
@@ -1419,13 +1326,9 @@
 
                 <div class="certificate-info">
 
-                    <h3>
-                        Machine Learning
-                    </h3>
+                    <h3>Machine Learning</h3>
 
-                    <p>
-                        IEEE Learning / Workshop
-                    </p>
+                    <p>IEEE Learning / Workshop</p>
 
                     <a
                         href="images/IEEE-machine-learning.jpeg"
@@ -1440,14 +1343,9 @@
             </div>
 
 
-            <!-- 08 ODYSSEY -->
-
             <div class="certificate-card">
 
-                <a
-                    href="images/odyssey.jpeg"
-                    target="_blank"
-                >
+                <a href="images/odyssey.jpeg" target="_blank">
 
                     <img
                         src="images/odyssey.jpeg"
@@ -1458,13 +1356,9 @@
 
                 <div class="certificate-info">
 
-                    <h3>
-                        ODYSSEY 2025
-                    </h3>
+                    <h3>ODYSSEY 2025</h3>
 
-                    <p>
-                        Cultural Committee / Volunteer
-                    </p>
+                    <p>Cultural Committee / Volunteer</p>
 
                     <a
                         href="images/odyssey.jpeg"
@@ -1478,8 +1372,6 @@
 
             </div>
 
-
-            <!-- 09 STUDENT INDUCTION -->
 
             <div class="certificate-card">
 
@@ -1497,13 +1389,9 @@
 
                 <div class="certificate-info">
 
-                    <h3>
-                        Student Induction Program
-                    </h3>
+                    <h3>Student Induction Program</h3>
 
-                    <p>
-                        Student Volunteer
-                    </p>
+                    <p>Student Volunteer</p>
 
                     <a
                         href="images/student-induction-program.jpeg"
@@ -1518,14 +1406,9 @@
             </div>
 
 
-            <!-- 10 TREASURE HUNT -->
-
             <div class="certificate-card">
 
-                <a
-                    href="images/treasure-hunt.jpeg"
-                    target="_blank"
-                >
+                <a href="images/treasure-hunt.jpeg" target="_blank">
 
                     <img
                         src="images/treasure-hunt.jpeg"
@@ -1536,13 +1419,9 @@
 
                 <div class="certificate-info">
 
-                    <h3>
-                        Treasure Hunt
-                    </h3>
+                    <h3>Treasure Hunt</h3>
 
-                    <p>
-                        2nd Place • Jain College of Engineering
-                    </p>
+                    <p>2nd Place • Jain College of Engineering</p>
 
                     <a
                         href="images/treasure-hunt.jpeg"
@@ -1584,34 +1463,47 @@
 
             <div class="contact-links">
 
+                <!-- EMAIL -->
                 <a
                     href="mailto:arihantjakkannavar90@gmail.com"
                     class="contact-link"
+                    title="Send me an email"
                 >
                     ✉ Email
                 </a>
 
+
+                <!-- WHATSAPP -->
                 <a
-                    href="tel:9880934638"
+                    href="https://wa.me/919880934638?text=Hello%20Arihant%2C%20I%20visited%20your%20portfolio."
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="contact-link"
+                    title="Chat with me on WhatsApp"
                 >
-                    ☎ Phone
+                    💬 WhatsApp
                 </a>
 
+
+                <!-- LINKEDIN -->
                 <a
                     href="https://www.linkedin.com/in/arihant-jakkannavar-781037326/"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="contact-link"
+                    title="Open my LinkedIn profile"
                 >
                     LinkedIn ↗
                 </a>
 
+
+                <!-- GITHUB -->
                 <a
                     href="https://github.com/arihantjakkannavar90-coder"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="contact-link"
+                    title="Open my GitHub profile"
                 >
                     GitHub ↗
                 </a>
