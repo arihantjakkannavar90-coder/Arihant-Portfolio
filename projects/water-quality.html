@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Real-Time Water Quality Analysis System | Arihant Jakkannavar</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#070b14;
+    color:#fff;
+    line-height:1.7;
+}
+
+/* NAVBAR */
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:70px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 7%;
+    background:rgba(7,11,20,.95);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    z-index:1000;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    color:#00bfff;
+    letter-spacing:2px;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+    border:1px solid #00bfff;
+    padding:9px 18px;
+    border-radius:25px;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#00bfff;
+    color:#000;
+}
+
+/* HERO */
+.hero{
+    min-height:90vh;
+    padding:140px 8% 80px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:
+        radial-gradient(circle at 50% 20%,rgba(0,191,255,.16),transparent 40%),
+        #070b14;
+}
+
+.hero-content{
+    max-width:1000px;
+}
+
+.small-title{
+    color:#00bfff;
+    font-size:15px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:18px;
+}
+
+.hero h1{
+    font-size:clamp(38px,6vw,70px);
+    line-height:1.1;
+    margin-bottom:25px;
+}
+
+.hero h1 span{
+    color:#00bfff;
+}
+
+.hero p{
+    max-width:850px;
+    margin:auto;
+    color:#b8c2d1;
+    font-size:18px;
+}
+
+/* BUTTONS */
+.buttons{
+    margin-top:35px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    padding:13px 25px;
+    border-radius:8px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.primary{
+    background:#00bfff;
+    color:#000;
+}
+
+.primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 25px rgba(0,191,255,.5);
+}
+
+.secondary{
+    border:1px solid #33445a;
+    color:white;
+}
+
+.secondary:hover{
+    border-color:#00bfff;
+    transform:translateY(-3px);
+}
+
+/* SECTIONS */
+section{
+    padding:80px 8%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title h2{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#8f9bad;
+}
+
+/* CARDS */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    max-width:1100px;
+    margin:auto;
+}
+
+.card{
+    background:#0d1422;
+    border:1px solid #1d2a3d;
+    border-radius:15px;
+    padding:30px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#00bfff;
+    box-shadow:0 10px 35px rgba(0,191,255,.08);
+}
+
+.card h3{
+    color:#00bfff;
+    margin-bottom:15px;
+    font-size:23px;
+}
+
+.card p{
+    color:#b5bfce;
+}
+
+.card ul{
+    padding-left:20px;
+    color:#b5bfce;
+}
+
+.card li{
+    margin-bottom:8px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+/* TAGS */
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+.tag{
+    padding:8px 14px;
+    background:#111d2e;
+    border:1px solid #24364d;
+    border-radius:20px;
+    color:#9fdfff;
+    font-size:14px;
+}
+
+/* SYSTEM FLOW */
+.flow{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+    max-width:1150px;
+    margin:auto;
+}
+
+.flow-step{
+    background:#0d1422;
+    border:1px solid #24364d;
+    padding:18px 20px;
+    border-radius:10px;
+    color:#d8e3ef;
+    text-align:center;
+    min-width:150px;
+    transition:.3s;
+}
+
+.flow-step:hover{
+    border-color:#00bfff;
+    transform:translateY(-3px);
+}
+
+.arrow{
+    color:#00bfff;
+    font-size:25px;
+}
+
+/* REPORT */
+.report-section{
+    text-align:center;
+    background:#090f1b;
+}
+
+.report-box{
+    max-width:750px;
+    margin:auto;
+    padding:45px 30px;
+    background:#0d1422;
+    border:1px solid #1e344b;
+    border-radius:18px;
+}
+
+.report-box h2{
+    font-size:30px;
+    margin-bottom:15px;
+}
+
+.report-box p{
+    color:#aeb9c8;
+    margin-bottom:25px;
+}
+
+.report-btn{
+    display:inline-block;
+    padding:14px 28px;
+    background:#00bfff;
+    color:#000;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.report-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 25px rgba(0,191,255,.5);
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:30px 20px;
+    background:#050810;
+    border-top:1px solid #162133;
+    color:#78869a;
+}
+
+footer span{
+    color:#00bfff;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+
+    nav{
+        padding:0 5%;
+    }
+
+    .hero{
+        padding:120px 6% 70px;
+    }
+
+    section{
+        padding:65px 6%;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .arrow{
+        transform:rotate(90deg);
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .section-title h2{
+        font-size:30px;
+    }
+
+    .flow-step{
+        width:100%;
+        max-width:280px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">AJ</div>
+
+    <a href="../index.html#projects" class="back-btn">
+        ← Back to Portfolio
+    </a>
+</nav>
+
+
+<!-- HERO -->
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="small-title">
+            Mini Project • ECE
+        </div>
+
+        <h1>
+            Real-Time Water
+            <br>
+            <span>Quality Analysis System</span>
+        </h1>
+
+        <p>
+            A sensor-based water quality monitoring system
+            using Arduino UNO, pH sensing and turbidity
+            measurement for digital monitoring and analysis.
+        </p>
+
+        <div class="buttons">
+
+            <a href="#overview" class="btn primary">
+                Explore Project
+            </a>
+
+            <a
+                href="Final%20mini%20project%20report.pdf"
+                target="_blank"
+                class="btn secondary"
+            >
+                📄 View Project Report
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- OVERVIEW -->
+<section id="overview">
+
+    <div class="section-title">
+        <h2>Project Overview</h2>
+        <p>Real-time monitoring of water quality parameters</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card full">
+
+            <h3>About the Project</h3>
+
+            <p>
+                The Real-Time Water Quality Analysis System
+                is a mini project focused on monitoring
+                important water quality parameters using
+                sensors and a microcontroller-based data
+                acquisition system.
+            </p>
+
+            <br>
+
+            <p>
+                The system uses a pH sensor and turbidity
+                sensor connected to an Arduino UNO. The
+                collected readings are intended for digital
+                monitoring and analysis.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROBLEM STATEMENT -->
+<section>
+
+    <div class="section-title">
+        <h2>Problem Statement</h2>
+        <p>Need for digital water quality monitoring</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card full">
+
+            <h3>Water Quality Monitoring</h3>
+
+            <p>
+                Water quality can vary depending on different
+                environmental and usage conditions. This project
+                explores a sensor-based approach for obtaining
+                water quality readings and presenting them
+                digitally for easier monitoring and analysis.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- OBJECTIVES -->
+<section>
+
+    <div class="section-title">
+        <h2>Project Objectives</h2>
+        <p>Main objectives of the system</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>01. Measure pH</h3>
+            <p>
+                Measure the pH level of the water using
+                a pH sensor.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>02. Measure Turbidity</h3>
+            <p>
+                Measure water turbidity using a
+                turbidity sensor.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>03. Real-Time Monitoring</h3>
+            <p>
+                Obtain sensor readings and make the
+                information available for monitoring.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>04. Data Analysis</h3>
+            <p>
+                Analyse collected water-quality parameters
+                for assessment and classification.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SYSTEM FLOW -->
+<section>
+
+    <div class="section-title">
+        <h2>System Flow</h2>
+        <p>Main data flow of the project</p>
+    </div>
+
+    <div class="flow">
+
+        <div class="flow-step">Water Sample</div>
+
+        <div class="arrow">→</div>
+
+        <div class="flow-step">pH Sensor</div>
+
+        <div class="arrow">+</div>
+
+        <div class="flow-step">Turbidity Sensor</div>
+
+        <div class="arrow">→</div>
+
+        <div class="flow-step">Arduino UNO</div>
+
+        <div class="arrow">→</div>
+
+        <div class="flow-step">Data Processing</div>
+
+        <div class="arrow">→</div>
+
+        <div class="flow-step">Digital Interface</div>
+
+    </div>
+
+</section>
+
+
+<!-- HARDWARE -->
+<section>
+
+    <div class="section-title">
+        <h2>Hardware Components</h2>
+        <p>Main hardware used in the project</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <h3>Arduino UNO</h3>
+
+            <p>
+                Serves as the microcontroller platform
+                for acquiring readings from connected
+                sensors.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>pH Sensor</h3>
+
+            <p>
+                Used to measure the pH level of the
+                water sample.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Turbidity Sensor</h3>
+
+            <p>
+                Used to measure the turbidity of the
+                water sample.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Sensor Interface</h3>
+
+            <p>
+                Provides the connection between the sensors
+                and the Arduino-based data acquisition system.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SOFTWARE -->
+<section>
+
+    <div class="section-title">
+        <h2>Software & Technologies</h2>
+        <p>Technologies associated with the project</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <h3>Programming</h3>
+
+            <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Arduino</span>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Web Application</h3>
+
+            <div class="tags">
+                <span class="tag">Django</span>
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Development Tools</h3>
+
+            <div class="tags">
+                <span class="tag">Arduino IDE</span>
+                <span class="tag">Visual Studio Code</span>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Data Analysis</h3>
+
+            <div class="tags">
+                <span class="tag">Sensor Data</span>
+                <span class="tag">Data Analysis</span>
+                <span class="tag">Machine Learning</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+<section>
+
+    <div class="section-title">
+        <h2>Key Features</h2>
+        <p>Major capabilities described for the project</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <h3>pH Monitoring</h3>
+
+            <p>
+                Monitoring of the pH parameter using
+                a dedicated sensor.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Turbidity Monitoring</h3>
+
+            <p>
+                Measurement of turbidity as an indicator
+                of water clarity.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Digital Monitoring</h3>
+
+            <p>
+                Digital presentation of collected
+                water-quality information.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Data Visualization</h3>
+
+            <p>
+                Presentation of sensor information in
+                a readable digital format.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Machine Learning</h3>
+
+            <p>
+                Machine-learning-based analysis and
+                classification are described in the
+                project documentation.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Notification</h3>
+
+            <p>
+                Notification functionality is described
+                in the project documentation.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DATA ANALYSIS -->
+<section>
+
+    <div class="section-title">
+        <h2>Data Analysis</h2>
+        <p>Sensor readings and water quality assessment</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card full">
+
+            <h3>Analysis Approach</h3>
+
+            <p>
+                The project uses pH and turbidity readings
+                as important water-quality parameters.
+                The collected information can be processed
+                and presented through the digital interface.
+            </p>
+
+            <br>
+
+            <p>
+                The project documentation also describes
+                machine-learning-based analysis for
+                classification of water quality.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- APPLICATIONS -->
+<section>
+
+    <div class="section-title">
+        <h2>Applications</h2>
+        <p>Potential application areas</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Water Monitoring</h3>
+            <p>
+                Sensor-based monitoring of water-quality
+                parameters.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Environmental Monitoring</h3>
+            <p>
+                Can support observation of water-quality
+                conditions in environmental applications.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Industrial Applications</h3>
+            <p>
+                The concept can be explored for monitoring
+                water-quality parameters in industrial
+                environments.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Educational Applications</h3>
+            <p>
+                Demonstrates integration of sensors,
+                microcontrollers, programming and
+                digital monitoring.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FUTURE SCOPE -->
+<section>
+
+    <div class="section-title">
+        <h2>Future Scope</h2>
+        <p>Possible future improvements</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card full">
+
+            <h3>Future Development</h3>
+
+            <ul>
+                <li>
+                    Monitor additional water-quality parameters.
+                </li>
+
+                <li>
+                    Improve data analysis and classification.
+                </li>
+
+                <li>
+                    Enhance the digital monitoring interface.
+                </li>
+
+                <li>
+                    Improve notification and reporting features.
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- REPORT -->
+<section class="report-section">
+
+    <div class="report-box">
+
+        <h2>Mini Project Documentation</h2>
+
+        <p>
+            View the complete mini-project report containing
+            the project documentation.
+        </p>
+
+        <!-- EXACT PDF FILE IN YOUR PROJECTS FOLDER -->
+        <a
+            href="Final%20mini%20project%20report.pdf"
+            target="_blank"
+            class="report-btn"
+        >
+            📄 Open Mini Project Report
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- CONCLUSION -->
+<section>
+
+    <div class="section-title">
+        <h2>Conclusion</h2>
+    </div>
+
+    <div class="grid">
+
+        <div class="card full">
+
+            <p>
+                The Real-Time Water Quality Analysis System
+                demonstrates a sensor-based approach to
+                monitoring water-quality parameters using
+                Arduino UNO, pH and turbidity sensors and
+                digital data monitoring.
+            </p>
+
+            <br>
+
+            <p>
+                The project combines embedded hardware,
+                programming, web-based monitoring and
+                data analysis concepts into a practical
+                engineering project.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <p>
+        © 2026
+        <span>Arihant Jakkannavar</span>
+        |
+        Real-Time Water Quality Analysis System
+    </p>
+
+</footer>
+
+</body>
+</html>

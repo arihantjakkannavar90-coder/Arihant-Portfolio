@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smart USB Activity Detection & Access Control System | Arihant Jakkannavar</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#070b14;
+    color:#fff;
+    line-height:1.7;
+}
+
+/* NAVBAR */
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:70px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 7%;
+    background:rgba(7,11,20,.96);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    z-index:1000;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    color:#00bfff;
+    letter-spacing:2px;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+    border:1px solid #00bfff;
+    padding:9px 18px;
+    border-radius:25px;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#00bfff;
+    color:#000;
+}
+
+/* HERO */
+.hero{
+    min-height:90vh;
+    padding:140px 8% 80px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:
+        radial-gradient(circle at 50% 20%,rgba(0,191,255,.15),transparent 40%),
+        #070b14;
+}
+
+.hero-content{
+    max-width:1000px;
+}
+
+.small-title{
+    color:#00bfff;
+    font-size:15px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:18px;
+}
+
+.hero h1{
+    font-size:clamp(38px,6vw,70px);
+    line-height:1.1;
+    margin-bottom:25px;
+}
+
+.hero h1 span{
+    color:#00bfff;
+}
+
+.hero p{
+    max-width:850px;
+    margin:auto;
+    color:#b8c2d1;
+    font-size:18px;
+}
+
+/* BUTTONS */
+.buttons{
+    margin-top:35px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    padding:13px 25px;
+    border-radius:8px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.primary{
+    background:#00bfff;
+    color:#000;
+}
+
+.primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 25px rgba(0,191,255,.5);
+}
+
+.secondary{
+    border:1px solid #33445a;
+    color:white;
+}
+
+.secondary:hover{
+    border-color:#00bfff;
+    transform:translateY(-3px);
+}
+
+/* SECTIONS */
+section{
+    padding:80px 8%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title h2{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#8f9bad;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    max-width:1100px;
+    margin:auto;
+}
+
+.card{
+    background:#0d1422;
+    border:1px solid #1d2a3d;
+    border-radius:15px;
+    padding:30px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#00bfff;
+    box-shadow:0 10px 35px rgba(0,191,255,.08);
+}
+
+.card h3{
+    color:#00bfff;
+    margin-bottom:15px;
+    font-size:23px;
+}
+
+.card p{
+    color:#b5bfce;
+}
+
+.card ul{
+    padding-left:20px;
+    color:#b5bfce;
+}
+
+.card li{
+    margin-bottom:9px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+/* TAGS */
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+.tag{
+    padding:8px 14px;
+    background:#111d2e;
+    border:1px solid #24364d;
+    border-radius:20px;
+    color:#9fdfff;
+    font-size:14px;
+}
+
+/* WORKFLOW */
+.workflow{
+    max-width:1100px;
+    margin:auto;
+}
+
+.workflow-item{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    margin-bottom:15px;
+}
+
+.number{
+    min-width:45px;
+    height:45px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#00bfff;
+    color:#000;
+    border-radius:50%;
+    font-weight:800;
+}
+
+.workflow-card{
+    flex:1;
+    background:#0d1422;
+    border:1px solid #1d2a3d;
+    border-radius:10px;
+    padding:18px 22px;
+}
+
+.workflow-card strong{
+    color:#fff;
+}
+
+.workflow-card p{
+    color:#9eabbc;
+    margin-top:4px;
+}
+
+/* REPORT */
+.report-section{
+    text-align:center;
+    background:#090f1b;
+}
+
+.report-box{
+    max-width:800px;
+    margin:auto;
+    padding:45px 30px;
+    background:#0d1422;
+    border:1px solid #1e344b;
+    border-radius:18px;
+}
+
+.report-box h2{
+    font-size:30px;
+    margin-bottom:15px;
+}
+
+.report-box p{
+    color:#aeb9c8;
+    margin-bottom:25px;
+}
+
+.report-btn{
+    display:inline-block;
+    padding:14px 28px;
+    background:#00bfff;
+    color:#000;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.report-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 25px rgba(0,191,255,.5);
+}
+
+/* STATUS */
+.status{
+    display:inline-block;
+    margin-top:20px;
+    padding:8px 16px;
+    border-radius:20px;
+    background:#111d2e;
+    border:1px solid #24364d;
+    color:#9fdfff;
+    font-size:14px;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:30px 20px;
+    background:#050810;
+    border-top:1px solid #162133;
+    color:#78869a;
+}
+
+footer span{
+    color:#00bfff;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+
+    nav{
+        padding:0 5%;
+    }
+
+    .hero{
+        padding:120px 6% 70px;
+    }
+
+    section{
+        padding:65px 6%;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .section-title h2{
+        font-size:30px;
+    }
+
+    .workflow-item{
+        align-items:flex-start;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+
+    <div class="logo">AJ</div>
+
+    <a href="../index.html#projects" class="back-btn">
+        ← Back to Portfolio
+    </a>
+
+</nav>
+
+
+<!-- HERO -->
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="small-title">
+            Security Project • ECE
+        </div>
+
+        <h1>
+            Smart USB Activity Detection
+            <br>
+            <span>& Access Control System</span>
+        </h1>
+
+        <p>
+            A desktop-based security application designed
+            to monitor USB device connections and provide
+            an access-control workflow before file access.
+        </p>
+
+        <div class="buttons">
+
+            <a href="#overview" class="btn primary">
+                Explore Project
+            </a>
+
+            <a
+                href="Smart_USB_Project_Planning_Report.pdf"
+                target="_blank"
+                class="btn secondary"
+            >
+                📄 View Project Report
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- OVERVIEW -->
+<section id="overview">
+
+    <div class="section-title">
+        <h2>Project Overview</h2>
+        <p>USB monitoring and access-control concept</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card full">
+
+            <h3>About the Project</h3>
+
+            <p>
+                The Smart USB Activity Detection and Access
+                Control System is a planned desktop-based
+                security application focused on monitoring
+                USB device connections and controlling access
+                before file access is permitted.
+            </p>
+
+            <br>
+
+            <p>
+                The system is designed to detect connected USB
+                storage devices, collect available device
+                information, record activity and provide an
+                owner-approval workflow.
+            </p>
+
+            <div class="status">
+                Security-focused Desktop Application
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROBLEM -->
+<section>
+
+    <div class="section-title">
+        <h2>Problem Statement</h2>
+        <p>USB devices can introduce security risks</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card full">
+
+            <h3>USB Access Security</h3>
+
+            <p>
+                Unknown or unauthorized USB storage devices
+                can introduce security risks to computers.
+                This project proposes a controlled workflow
+                where a connected USB device can be detected,
+                monitored and placed into a restricted or
+                pending state before access is approved.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- OBJECTIVES -->
+<section>
+
+    <div class="section-title">
+        <h2>Project Objectives</h2>
+        <p>Core objectives described in the project documentation</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>01. USB Detection</h3>
+            <p>
+                Detect connected USB storage devices.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>02. Device Information</h3>
+            <p>
+                Collect available information such as
+                device name, manufacturer and serial number.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>03. Access Control</h3>
+            <p>
+                Provide an approval workflow before access
+                is allowed.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>04. Activity Monitoring</h3>
+            <p>
+                Record USB activity and access decisions
+                for later review.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WORKFLOW -->
+<section>
+
+    <div class="section-title">
+        <h2>System Workflow</h2>
+        <p>Proposed USB access-control process</p>
+    </div>
+
+    <div class="workflow">
+
+        <div class="workflow-item">
+
+            <div class="number">1</div>
+
+            <div class="workflow-card">
+
+                <strong>USB Connected</strong>
+
+                <p>
+                    A USB storage device is connected to
+                    the computer.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="workflow-item">
+
+            <div class="number">2</div>
+
+            <div class="workflow-card">
+
+                <strong>Device Detection</strong>
+
+                <p>
+                    The system detects the connected USB
+                    device.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="workflow-item">
+
+            <div class="number">3</div>
+
+            <div class="workflow-card">
+
+                <strong>Information Collection</strong>
+
+                <p>
+                    Available device information and
+                    connection time are collected.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="workflow-item">
+
+            <div class="number">4</div>
+
+            <div class="workflow-card">
+
+                <strong>Restricted / Pending State</strong>
+
+                <p>
+                    The device enters the proposed
+                    restricted or pending state.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="workflow-item">
+
+            <div class="number">5</div>
+
+            <div class="workflow-card">
+
+                <strong>Access Request</strong>
+
+                <p>
+                    An access request is presented to
+                    the owner.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="workflow-item">
+
+            <div class="number">6</div>
+
+            <div class="workflow-card">
+
+                <strong>Owner Approval</strong>
+
+                <p>
+                    Access can follow direct approval or
+                    password-protected approval.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="workflow-item">
+
+            <div class="number">7</div>
+
+            <div class="workflow-card">
+
+                <strong>Activity Logging</strong>
+
+                <p>
+                    Access decisions and relevant activity
+                    are recorded for review.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ACCESS CONTROL -->
+<section>
+
+    <div class="section-title">
+        <h2>Access Control</h2>
+        <p>Two proposed approval methods</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <h3>Direct Access Approval</h3>
+
+            <p>
+                The owner can directly approve access
+                to the detected USB device.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Password Protected Access</h3>
+
+            <p>
+                Access can be protected using a password.
+                Failed authentication attempts are intended
+                to be logged.
+            </p>
+
+        </div>
+
+        <div class="card full">
+
+            <h3>Future Password Recovery</h3>
+
+            <p>
+                The project documentation describes a
+                future forgot-password mechanism using
+                OTP-based password reset.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TECHNOLOGY -->
+<section>
+
+    <div class="section-title">
+        <h2>Technologies</h2>
+        <p>Technologies planned for the project</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <h3>Programming</h3>
+
+            <div class="tags">
+                <span class="tag">Python 3.x</span>
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Backend</h3>
+
+            <div class="tags">
+                <span class="tag">Flask</span>
+                <span class="tag">SQLite</span>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h3>USB Monitoring</h3>
+
+            <div class="tags">
+                <span class="tag">Windows</span>
+                <span class="tag">WMI</span>
+                <span class="tag">pywin32</span>
+                <span class="tag">watchdog</span>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Security</h3>
+
+            <div class="tags">
+                <span class="tag">Password Hashing</span>
+                <span class="tag">Authentication</span>
+                <span class="tag">Access Control</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+<section>
+
+    <div class="section-title">
+        <h2>Dashboard Concept</h2>
+        <p>Planned monitoring interface</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <h3>Dashboard</h3>
+
+            <p>
+                Overview of USB devices and access activity.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>USB Devices</h3>
+
+            <p>
+                View detected USB devices and available
+                device information.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Access Requests</h3>
+
+            <p>
+                Review and manage pending USB access requests.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Activity Logs</h3>
+
+            <p>
+                Review recorded USB and authentication activity.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Reports</h3>
+
+            <p>
+                Generate and review project activity reports.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Settings</h3>
+
+            <p>
+                Manage owner and application configuration.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SECURITY -->
+<section>
+
+    <div class="section-title">
+        <h2>Security Considerations</h2>
+        <p>Important security practices in the project plan</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card full">
+
+            <ul>
+
+                <li>
+                    Passwords should not be stored in plaintext.
+                </li>
+
+                <li>
+                    Email credentials should not be hard-coded.
+                </li>
+
+                <li>
+                    Owner configuration should be protected.
+                </li>
+
+                <li>
+                    Access decisions and authentication failures
+                    should be logged.
+                </li>
+
+                <li>
+                    Different device states should be clearly
+                    distinguished.
+                </li>
+
+                <li>
+                    Monitoring should be limited to the intended
+                    scope.
+                </li>
+
+                <li>
+                    The system should be tested in the intended
+                    Windows environment.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- REPORT -->
+<section class="report-section">
+
+    <div class="report-box">
+
+        <h2>Project Documentation</h2>
+
+        <p>
+            Read the complete Smart USB project planning
+            report for the proposed architecture, workflow,
+            technologies, database design and implementation
+            roadmap.
+        </p>
+
+        <!-- EXACT PDF FILE FROM YOUR PROJECTS FOLDER -->
+        <a
+            href="Smart_USB_Project_Planning_Report.pdf"
+            target="_blank"
+            class="report-btn"
+        >
+            📄 Open Smart USB Project Report
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- CONCLUSION -->
+<section>
+
+    <div class="section-title">
+        <h2>Conclusion</h2>
+    </div>
+
+    <div class="grid">
+
+        <div class="card full">
+
+            <p>
+                The Smart USB Activity Detection and Access
+                Control System presents a security-focused
+                approach to monitoring USB connections and
+                managing access through an owner-approval
+                workflow.
+            </p>
+
+            <br>
+
+            <p>
+                The project combines Python development,
+                USB monitoring, authentication, database
+                management and a web-based dashboard concept.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <p>
+        © 2026
+        <span>Arihant Jakkannavar</span>
+        |
+        Smart USB Activity Detection & Access Control System
+    </p>
+
+</footer>
+
+</body>
+</html>
